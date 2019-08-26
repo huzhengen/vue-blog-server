@@ -54,7 +54,6 @@ router.get('/', (req, res) => {
 				page: page,
 				data: rows
 			}
-			console.log(data)
 			res.send(data)
 		}).catch((e) => {
 			console.log(e)
@@ -85,7 +84,6 @@ router.get('/user/:userId', (req, res) => {
 				page: page,
 				data: rows
 			}
-			console.log(data)
 			res.send(data)
 		}).catch((e) => {
 			console.log(e)

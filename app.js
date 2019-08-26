@@ -26,6 +26,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({ secret: 'hello world', cookie: { maxAge: 6000000 } }));
 
+let allowCrossDomain = function(req, res, next) {
+	res.header('Access-Control-Allow-Origin', req.headers.origin)
+	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH')
+	res.header('Access-Control-Allow-Headers', 'Content-Type')
+	res.header("Access-Control-Allow-Credentials", true)
+	if (req.method === "OPTIONS") {
+		res.send(200)
+	} else {
+		next()
+	}
+}
+
+app.use(allowCrossDomain)
+
 app.use('/', routes);
 app.use('/users', users);
 app.use('/blogs', blogs);
