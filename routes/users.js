@@ -2,11 +2,12 @@ var models = require('../models');
 var express = require('express');
 var router = express.Router();
 var check = require('../helper/check.js');
+let hash = require('../helper/util.js');
 
 // 注册
 router.post('/register', check.checkUsername, check.checkPassword, (req, res, next) => {
 	let username = req.body.username
-	let password = req.body.password
+	let password = hash(req.body.password)
 	models.User.findOrCreate({
 		where: { username },
 		defaults: { password: password }
@@ -24,7 +25,7 @@ router.post('/register', check.checkUsername, check.checkPassword, (req, res, ne
 // 登陆
 router.post('/login', check.checkUsername, check.checkPassword, (req, res, next) => {
     let username = req.body.username
-    let password = req.body.password
+	let password = hash(req.body.password)
     models.User.findOne({ where: { username } })
         .then(user => {
             if (!user) {
