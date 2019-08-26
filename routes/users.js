@@ -16,6 +16,7 @@ router.post('/register', check.checkUsername, check.checkPassword, (req, res, ne
 		}
 		let json = user.get({ plain: true })
 		req.session.user = json
+		delete json.password;
 		res.send({ status: 'ok', msg: '注册成功', data: json })
 	})
 });
@@ -34,6 +35,7 @@ router.post('/login', check.checkUsername, check.checkPassword, (req, res, next)
             }
             let json = user.get({ plain: true })
             req.session.user = json
+			delete json.password;
             res.send({ status: 'ok', msg: '登录成功', data: json })
         })
 })
