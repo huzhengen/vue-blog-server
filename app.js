@@ -8,6 +8,7 @@ var session = require('express-session');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var boot = require('./routes/boot');
 var blogs = require('./routes/blogs');
 
 var app = express();
@@ -37,11 +38,11 @@ let allowCrossDomain = function(req, res, next) {
 		next()
 	}
 }
-
 app.use(allowCrossDomain)
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/boot', boot);
 app.use('/blogs', blogs);
 
 
