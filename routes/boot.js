@@ -68,7 +68,7 @@ router.post('/login', check.checkUsername, check.checkPassword, (req, res, next)
         })
 })
 
-// post indexrole
+// post indexrole 角色
 router.post('/indexrole', (req, res, next) => {
     let pageNum = req.body.pageNum
     let pageSize = req.body.pageSize
@@ -76,13 +76,29 @@ router.post('/indexrole', (req, res, next) => {
         status: 0,
         data: {
             list: [
-                { id: 1, rolename: '角色1', founder: '创建人1', intime: '2019', state: true },
-                { id: 2, rolename: '角色2', founder: '创建人2', intime: '2019', state: true },
-                { id: 3, rolename: '角色3', founder: '创建人3', intime: '2019', state: true },
-                { id: 4, rolename: '角色4', founder: '创建人4', intime: '2019', state: true },
-                { id: 5, rolename: '角色5', founder: '创建人5', intime: '2019', state: true },
+                { id: 1, rolename: '角色1', founder: '创建人1', intime: '2019', state: 1 },
+                { id: 2, rolename: '角色2', founder: '创建人2', intime: '2019', state: 1 },
+                { id: 3, rolename: '角色3', founder: '创建人3', intime: '2019', state: 1 },
+                { id: 4, rolename: '角色4', founder: '创建人4', intime: '2019', state: 1 },
+                { id: 5, rolename: '角色5', founder: '创建人5', intime: '2019', state: 1 },
             ],
             total: 5,
+        }
+    })
+})
+
+// post getrolebyid
+router.post('/getrolebyid', (req, res, next) => {
+    let pageNum = req.body.pageNum
+    let pageSize = req.body.pageSize
+    res.send({
+        status: 0,
+        data: {
+            rolename: '角色test',
+            founder: 'founder',
+            intime: '2019',
+            state: 1,
+            id: 1
         }
     })
 })
@@ -129,9 +145,8 @@ router.post('/rolePerm/list', (req, res, next) => {
 })
 
 
-
 //注销
-router.get('/logout', (req, res, next) => {
+router.get('/loginout', (req, res, next) => {
     if (req.session.user) {
         req.session.destroy()
         res.send({ status: 'ok', msg: '注销成功' })
