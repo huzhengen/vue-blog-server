@@ -17,7 +17,7 @@
     "express-session": "^1.16.2",
     "morgan": "^1.7.0",
     "pg": "^6.1.0",
-    "pug": "^2.0.0-rc.4",
+    "pug": "^3.0.1",
     "sequelize": "^4.23.1",
     "sequelize-cli": "^3.1.0",
     "serve-favicon": "~2.3.0",
